@@ -11,21 +11,13 @@ function App() {
   })
   console.log(results)
 
-  // const statess = results.map(res => results.data[0].states)
-
-  // const statess = Object.entries(data.data).map((element => element[5].states))
-  // console.log(statess)
-
-
   return (
-    <div className="App">
+    <div className='App'>
       <h1>COVID-19 Statistics</h1>
-      <div className='isErrorIsLoading'>
+      <div>
         {error && <p>An error occured</p>}
-        {isLoading && <p>Loading...</p>}
-      </div>
-      {isSuccess && (results?.map(result => (
-        <>
+        {isLoading && <p>Loading ...</p>}
+        {isSuccess && (results?.map((result, index) => (
           <div key={result.id} className="headline-stats">
             <div>Total Samples Tested: {result.data[0].totalSamplesTested}</div>
             <div>Total Confirmed Cases: {result.data[0].totalConfirmedCases}</div>
@@ -33,21 +25,89 @@ function App() {
             <div>Discharged: {result.data[0].discharged}</div>
             <div>Death: {result.data[0].death}</div>
           </div>
-          <div className='state-stats' key={result.data[0].states[0].id}>
-            <br />
-            <h1>Stats by states</h1>
-            <div className='state'>
-            <div>State: {result.data[0].states[0].state}</div>
-            <div>Cases On Admission: {result.data[0].states[0].casesOnAdmission}</div>
-            <div>Confirmed Cases: {result.data[0].states[0].confirmedCases}</div>
-            <div>Death: {result.data[0].states[0].death}</div>
-            <div>Discharged: {result.data[0].states[0].discharged}</div>
-          </div>
-          </div>
-        </>
-      )))}
+        )))}
+        <br />
+        <h2>Stats by states</h2>
+        {isSuccess && (
+          data && data.data.states.map((item, index) => (
+            <div key={index} className="state">
+              <div>State: {item.state}</div>
+              <div>Cases On Admission: {item.casesOnAdmission}</div>
+              <div>Confirmed Cases: {item.confirmedCases}</div>
+              <div>Discharged: {item.discharged}</div>
+            </div>
+          ))
+        )}
+      </div>
     </div>
-  );
+  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // return (
+  //   <div className="App">
+  //     <h1>COVID-19 Statistics</h1>
+  //     <div className='isErrorIsLoading'>
+  //       {error && <p>An error occured</p>}
+  //       {isLoading && <p>Loading...</p>}
+  //     </div>
+  //     {isSuccess && (results?.map((result, index) => (
+  //       <>
+  //         <div key={result.id} className="headline-stats">
+  //           <div>Total Samples Tested: {result.data[0].totalSamplesTested}</div>
+  //           <div>Total Confirmed Cases: {result.data[0].totalConfirmedCases}</div>
+  //           <div>Total Active Cases: {result.data[0].totalActiveCases}</div>
+  //           <div>Discharged: {result.data[0].discharged}</div>
+  //           <div>Death: {result.data[0].death}</div>
+  //         </div>
+  //         <div className='state-stats' key={result.data[0].states[0].id}>
+  //           <br />
+  //           <h1>Stats by states</h1>
+  //           <div className='state'>
+  //           <div>State: {result.data[index].states[index].state}</div>
+  //           <div>Cases On Admission: {result.data[index].states[index].casesOnAdmission}</div>
+  //           <div>Confirmed Cases: {result.data[index].states[index].confirmedCases}</div>
+  //           <div>Death: {result.data[index].states[index].death}</div>
+  //           <div>Discharged: {result.data[index].states[index].discharged}</div>
+  //         </div>
+  //         </div>
+  //         {/* {stat} */}
+  //       </>
+  //     )))}
+  //   </div>
+  // );
 }
 
 export default App;
