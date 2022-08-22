@@ -4,7 +4,7 @@ import axios from "axios";
 export const covidAPI = createApi({
     reducerPath: 'covidAPI',
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://covidnigeria.herokuapp.com/api/"
+        baseUrl: "https://covidnigeria.herokuapp.com/api"
     }),
     endpoints: (builder) => ({
         fetchData: builder.query({
