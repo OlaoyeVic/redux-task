@@ -6,7 +6,7 @@ function App() {
   const { data, error, isLoading, isSuccess } = useFetchDataQuery();
   console.log(data)
 
-  const results = Object.entries(data)?.map(([key, value]) => {
+  const results = data && Object.entries(data)?.map(([key, value]) => {
     return {[key]: [value]}
   })
   console.log(results)
@@ -17,7 +17,7 @@ function App() {
       <div>
         {error && <p>An error occured</p>}
         {isLoading && <p>Loading ...</p>}
-        {isSuccess && (results?.map((result, index) => (
+        {isSuccess && ( results && results?.map((result, index) => (
           <div key={result.id} className="headline-stats">
             <div>Total Samples Tested: {result.data[0].totalSamplesTested}</div>
             <div>Total Confirmed Cases: {result.data[0].totalConfirmedCases}</div>
